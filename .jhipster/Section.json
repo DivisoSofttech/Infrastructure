@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "floor",
+            "otherEntityName": "floor",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "shelvesOrTables",
+            "otherEntityName": "shelfOrTable",
+            "otherEntityRelationshipName": "section"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180124090844",
+    "javadoc": "entity Section\nTo store Section details\n@author NIBUN",
+    "entityTableName": "section",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "infrastructure"
+}

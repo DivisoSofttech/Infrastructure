@@ -1,0 +1,31 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "addresses",
+            "otherEntityName": "address",
+            "otherEntityRelationshipName": "organisation"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "buildings",
+            "otherEntityName": "building",
+            "otherEntityRelationshipName": "organisation"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20180124090841",
+    "javadoc": "entity organisation\nTo store organisation details\n@author NIBUN",
+    "entityTableName": "organisation",
+    "dto": "mapstruct",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "microserviceName": "infrastructure"
+}

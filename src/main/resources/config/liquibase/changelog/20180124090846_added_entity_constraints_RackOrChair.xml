@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity RackOrChair.
+    -->
+    <changeSet id="20180124090846-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="shelf_or_table_id"
+                                 baseTableName="rack_or_chair"
+                                 constraintName="fk_rack_or_chair_shelf_or_table_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="shelf_or_table"/>
+
+    </changeSet>
+</databaseChangeLog>

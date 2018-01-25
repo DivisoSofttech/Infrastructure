@@ -1,0 +1,107 @@
+/**
+ * entity Country
+ * lookup for showing country details
+ * @author NIBUN
+ */
+entity Country{
+	sortName String,
+	name String,
+	phoneCode Integer
+}
+
+/**
+ * entity State
+ * lookup for showing State details
+ * @author NIBUN 
+ */
+entity State{
+	name String
+}
+
+/**
+ * entity City
+ * lookup for showing district details
+ * @author NIBUN
+ */
+entity City{
+	name String
+}
+
+/**
+ * entity Address
+ *  To store address details
+ * @author NIBUN
+ */
+entity Address{
+	houseNumber Integer,
+	streetName String,
+	zipCode Integer
+}
+
+/**
+ * entity organisation
+ * To store organisation details
+ * @author NIBUN
+ */
+entity Organisation{
+	name String
+}
+
+/**
+ * entity Building
+ * To store building details
+ * @author NIBUN
+ */
+entity Building{
+	name String
+}
+
+/**
+ * entity Floor
+ * To store Floor details
+ * @author NIBUN
+ */
+entity Floor{
+	name String
+}
+
+/**
+ * entity Section
+ * To store Section details
+ * @author NIBUN
+ */
+entity Section{
+	name String
+}
+
+/**
+ * entity ShelfOrTable
+ * To store ShelfOrTable details
+ * @author NIBUN
+ */
+entity ShelfOrTable{
+	name String
+}
+
+
+/**
+ * entity RackOrChair
+ * To store RackOrChair details
+ * @author NIBUN
+ */
+entity RackOrChair{
+	name String
+}
+relationship OneToMany {
+	Country{states} to State , 
+	State{districts} to City , 
+	City{addresses} to Address , 
+	Organisation{addresses} to Address , 
+	Organisation{buildings} to  Building , 
+	Building{floors} to Floor , 
+	Floor{sections} to Section , 
+	Section{shelvesOrTables} to ShelfOrTable , 
+	ShelfOrTable{racksOrChairs} to RackOrChair
+}
+dto * with mapstruct
+service all with serviceImpl
