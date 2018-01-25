@@ -7,12 +7,11 @@ import com.diviso.infrastructure.service.dto.FloorDTO;
 import com.diviso.infrastructure.service.mapper.FloorMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing Floor.
@@ -49,15 +48,15 @@ public class FloorServiceImpl implements FloorService {
     /**
      * Get all the floors.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<FloorDTO> findAll() {
+    public Page<FloorDTO> findAll(Pageable pageable) {
         log.debug("Request to get all Floors");
-        return floorRepository.findAll().stream()
-            .map(floorMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return floorRepository.findAll(pageable)
+            .map(floorMapper::toDto);
     }
 
     /**
@@ -84,13 +83,4 @@ public class FloorServiceImpl implements FloorService {
         log.debug("Request to delete Floor : {}", id);
         floorRepository.delete(id);
     }
-
-	@Override
-	@Transactional(readOnly=true)
-	public FloorDTO findByName(String name) {
-		// TODO Auto-generated method stub
-		log.debug("Request to get Floor : {}", name);
-		Floor floor = floorRepository.findByName(name);
-		return floorMapper.toDto(floor);
-	}
 }

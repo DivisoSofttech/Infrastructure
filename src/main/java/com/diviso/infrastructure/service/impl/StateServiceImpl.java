@@ -7,12 +7,11 @@ import com.diviso.infrastructure.service.dto.StateDTO;
 import com.diviso.infrastructure.service.mapper.StateMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing State.
@@ -49,15 +48,15 @@ public class StateServiceImpl implements StateService {
     /**
      * Get all the states.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
     @Override
     @Transactional(readOnly = true)
-    public List<StateDTO> findAll() {
+    public Page<StateDTO> findAll(Pageable pageable) {
         log.debug("Request to get all States");
-        return stateRepository.findAll().stream()
-            .map(stateMapper::toDto)
-            .collect(Collectors.toCollection(LinkedList::new));
+        return stateRepository.findAll(pageable)
+            .map(stateMapper::toDto);
     }
 
     /**

@@ -24,7 +24,7 @@
     "javadoc": "entity organisation\nTo store organisation details\n@author NIBUN",
     "entityTableName": "organisation",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "microserviceName": "infrastructure"

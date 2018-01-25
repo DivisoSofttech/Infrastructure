@@ -4,10 +4,15 @@ import com.codahale.metrics.annotation.Timed;
 import com.diviso.infrastructure.service.ShelfOrTableService;
 import com.diviso.infrastructure.web.rest.errors.BadRequestAlertException;
 import com.diviso.infrastructure.web.rest.util.HeaderUtil;
+import com.diviso.infrastructure.web.rest.util.PaginationUtil;
 import com.diviso.infrastructure.service.dto.ShelfOrTableDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,14 +84,17 @@ public class ShelfOrTableResource {
     /**
      * GET  /shelf-or-tables : get all the shelfOrTables.
      *
+     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of shelfOrTables in body
      */
     @GetMapping("/shelf-or-tables")
     @Timed
-    public List<ShelfOrTableDTO> getAllShelfOrTables() {
-        log.debug("REST request to get all ShelfOrTables");
-        return shelfOrTableService.findAll();
-        }
+    public ResponseEntity<List<ShelfOrTableDTO>> getAllShelfOrTables(Pageable pageable) {
+        log.debug("REST request to get a page of ShelfOrTables");
+        Page<ShelfOrTableDTO> page = shelfOrTableService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/shelf-or-tables");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
     /**
      * GET  /shelf-or-tables/:id : get the "id" shelfOrTable.

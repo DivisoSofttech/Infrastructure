@@ -1,7 +1,8 @@
 package com.diviso.infrastructure.service;
 
 import com.diviso.infrastructure.service.dto.FloorDTO;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing Floor.
@@ -19,9 +20,10 @@ public interface FloorService {
     /**
      * Get all the floors.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<FloorDTO> findAll();
+    Page<FloorDTO> findAll(Pageable pageable);
 
     /**
      * Get the "id" floor.
@@ -37,6 +39,4 @@ public interface FloorService {
      * @param id the id of the entity
      */
     void delete(Long id);
-
-	FloorDTO findByName(String name);
 }

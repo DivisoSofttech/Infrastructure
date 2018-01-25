@@ -24,7 +24,7 @@
     "javadoc": "entity ShelfOrTable\nTo store ShelfOrTable details\n@author NIBUN",
     "entityTableName": "shelf_or_table",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "microserviceName": "infrastructure"

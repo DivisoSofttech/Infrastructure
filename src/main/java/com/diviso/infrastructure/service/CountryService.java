@@ -1,7 +1,8 @@
 package com.diviso.infrastructure.service;
 
 import com.diviso.infrastructure.service.dto.CountryDTO;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing Country.
@@ -19,9 +20,10 @@ public interface CountryService {
     /**
      * Get all the countries.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<CountryDTO> findAll();
+    Page<CountryDTO> findAll(Pageable pageable);
 
     /**
      * Get the "id" country.
@@ -37,6 +39,4 @@ public interface CountryService {
      * @param id the id of the entity
      */
     void delete(Long id);
-
-	CountryDTO findByName(String name);
 }

@@ -1,7 +1,8 @@
 package com.diviso.infrastructure.service;
 
 import com.diviso.infrastructure.service.dto.SectionDTO;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing Section.
@@ -19,9 +20,10 @@ public interface SectionService {
     /**
      * Get all the sections.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<SectionDTO> findAll();
+    Page<SectionDTO> findAll(Pageable pageable);
 
     /**
      * Get the "id" section.

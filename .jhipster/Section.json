@@ -24,7 +24,7 @@
     "javadoc": "entity Section\nTo store Section details\n@author NIBUN",
     "entityTableName": "section",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "microserviceName": "infrastructure"

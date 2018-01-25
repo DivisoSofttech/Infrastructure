@@ -24,7 +24,7 @@
     "javadoc": "entity Floor\nTo store Floor details\n@author NIBUN",
     "entityTableName": "floor",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "microserviceName": "infrastructure"

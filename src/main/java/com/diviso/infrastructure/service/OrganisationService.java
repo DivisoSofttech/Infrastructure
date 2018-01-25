@@ -1,7 +1,8 @@
 package com.diviso.infrastructure.service;
 
 import com.diviso.infrastructure.service.dto.OrganisationDTO;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing Organisation.
@@ -19,9 +20,10 @@ public interface OrganisationService {
     /**
      * Get all the organisations.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<OrganisationDTO> findAll();
+    Page<OrganisationDTO> findAll(Pageable pageable);
 
     /**
      * Get the "id" organisation.

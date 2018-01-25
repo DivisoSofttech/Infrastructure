@@ -13,6 +13,4 @@ import org.springframework.data.jpa.repository.*;
 @Repository
 public interface FloorRepository extends JpaRepository<Floor, Long> {
 
-	Floor findByName(String name);
-
 }

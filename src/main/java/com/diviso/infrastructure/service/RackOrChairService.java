@@ -1,7 +1,8 @@
 package com.diviso.infrastructure.service;
 
 import com.diviso.infrastructure.service.dto.RackOrChairDTO;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing RackOrChair.
@@ -19,9 +20,10 @@ public interface RackOrChairService {
     /**
      * Get all the rackOrChairs.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<RackOrChairDTO> findAll();
+    Page<RackOrChairDTO> findAll(Pageable pageable);
 
     /**
      * Get the "id" rackOrChair.

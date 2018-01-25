@@ -4,10 +4,15 @@ import com.codahale.metrics.annotation.Timed;
 import com.diviso.infrastructure.service.CountryService;
 import com.diviso.infrastructure.web.rest.errors.BadRequestAlertException;
 import com.diviso.infrastructure.web.rest.util.HeaderUtil;
+import com.diviso.infrastructure.web.rest.util.PaginationUtil;
 import com.diviso.infrastructure.service.dto.CountryDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,14 +84,17 @@ public class CountryResource {
     /**
      * GET  /countries : get all the countries.
      *
+     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of countries in body
      */
     @GetMapping("/countries")
     @Timed
-    public List<CountryDTO> getAllCountries() {
-        log.debug("REST request to get all Countries");
-        return countryService.findAll();
-        }
+    public ResponseEntity<List<CountryDTO>> getAllCountries(Pageable pageable) {
+        log.debug("REST request to get a page of Countries");
+        Page<CountryDTO> page = countryService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/countries");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
     /**
      * GET  /countries/:id : get the "id" country.
@@ -114,13 +122,5 @@ public class CountryResource {
         log.debug("REST request to delete Country : {}", id);
         countryService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
-    }
-    
-    @GetMapping
-    @Timed
-    public ResponseEntity<CountryDTO> getByName(@PathVariable String name){
-    	log.debug("REST request to get country: {}", name);
-    	CountryDTO countryDTO = countryService.findByName(name);
-    	return ResponseUtil.wrapOrNotFound(Optional.ofNullable(countryDTO));
     }
 }

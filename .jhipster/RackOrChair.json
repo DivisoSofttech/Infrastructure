@@ -18,7 +18,7 @@
     "javadoc": "entity RackOrChair\nTo store RackOrChair details\n@author NIBUN",
     "entityTableName": "rack_or_chair",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "microserviceName": "infrastructure"

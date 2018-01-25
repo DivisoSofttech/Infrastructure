@@ -1,7 +1,8 @@
 package com.diviso.infrastructure.service;
 
 import com.diviso.infrastructure.service.dto.CityDTO;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing City.
@@ -19,9 +20,10 @@ public interface CityService {
     /**
      * Get all the cities.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<CityDTO> findAll();
+    Page<CityDTO> findAll(Pageable pageable);
 
     /**
      * Get the "id" city.

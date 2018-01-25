@@ -1,7 +1,8 @@
 package com.diviso.infrastructure.service;
 
 import com.diviso.infrastructure.service.dto.StateDTO;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing State.
@@ -19,9 +20,10 @@ public interface StateService {
     /**
      * Get all the states.
      *
+     * @param pageable the pagination information
      * @return the list of entities
      */
-    List<StateDTO> findAll();
+    Page<StateDTO> findAll(Pageable pageable);
 
     /**
      * Get the "id" state.

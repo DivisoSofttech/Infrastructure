@@ -24,7 +24,7 @@
     "javadoc": "entity City\nlookup for showing district details\n@author NIBUN",
     "entityTableName": "city",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "microserviceName": "infrastructure"

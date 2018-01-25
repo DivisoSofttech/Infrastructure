@@ -4,10 +4,15 @@ import com.codahale.metrics.annotation.Timed;
 import com.diviso.infrastructure.service.OrganisationService;
 import com.diviso.infrastructure.web.rest.errors.BadRequestAlertException;
 import com.diviso.infrastructure.web.rest.util.HeaderUtil;
+import com.diviso.infrastructure.web.rest.util.PaginationUtil;
 import com.diviso.infrastructure.service.dto.OrganisationDTO;
 import io.github.jhipster.web.util.ResponseUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -79,14 +84,17 @@ public class OrganisationResource {
     /**
      * GET  /organisations : get all the organisations.
      *
+     * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and the list of organisations in body
      */
     @GetMapping("/organisations")
     @Timed
-    public List<OrganisationDTO> getAllOrganisations() {
-        log.debug("REST request to get all Organisations");
-        return organisationService.findAll();
-        }
+    public ResponseEntity<List<OrganisationDTO>> getAllOrganisations(Pageable pageable) {
+        log.debug("REST request to get a page of Organisations");
+        Page<OrganisationDTO> page = organisationService.findAll(pageable);
+        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/organisations");
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
 
     /**
      * GET  /organisations/:id : get the "id" organisation.

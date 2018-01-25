@@ -32,7 +32,7 @@
     "javadoc": "entity Address\nTo store address details\n@author NIBUN",
     "entityTableName": "address",
     "dto": "mapstruct",
-    "pagination": "no",
+    "pagination": "pagination",
     "service": "serviceImpl",
     "jpaMetamodelFiltering": false,
     "microserviceName": "infrastructure"
